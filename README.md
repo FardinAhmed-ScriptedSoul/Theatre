@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cinema ticket booking system
 
 Starter code for the gradual explanation on how to create a ticket booking system
@@ -13,3 +14,7 @@ User A ──► read seat A1 → "free" ──► write booking ──► succe
 User B ──► read seat A1 → "free" ──► write booking ──► ???
 ```
 Without any protection, both succeed. Now two people show up for the same seat.
+=======
+# Theatre
+A simple movie booking platform .Solving Concurrency issues ....
+>>>>>>> 9d4b7870f97c69d20ea15797558d9d3bafb07655
