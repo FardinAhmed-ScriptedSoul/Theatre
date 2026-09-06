@@ -6,11 +6,13 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
+	"github.com/sikozonpc/cinema/internal/adapters/redis"
 )
 
 func TestConcurrentBooking_ExactlyOneWins(t *testing.T) {
-	store := NewMemoryStore()
+	store := NewRedisStore(redis.NewClient("localhost:6379"))
 	svc := NewService(store)
+	movieID := "screen-1-" + uuid.New().String()
 
 	const numGoroutines = 100_000 // 100k users trying to book a seat at the same time
 
@@ -25,7 +27,7 @@ func TestConcurrentBooking_ExactlyOneWins(t *testing.T) {
 		go func(userNum int) {
 			defer wg.Done()
 			err := svc.Book(Booking{
-				MovieID: "screen-1",
+				MovieID: movieID,
 				SeatID:  "A1",
 				UserID:  uuid.New().String(),
 			})
